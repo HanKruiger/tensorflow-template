@@ -16,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.28.10",
+    "deeplearn": "^0.5.1",
     "eslint": "^4.18.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",

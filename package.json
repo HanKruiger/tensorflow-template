@@ -8,9 +8,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "lint": "eslint ./src",
     "start": "webpack-dev-server --mode development --host $(ipconfig getifaddr en0)",
-    "lint": "eslint ./src"
+    "build": "webpack --mode production"
   },
   "author": "Han Kruiger",
   "license": "ISC",

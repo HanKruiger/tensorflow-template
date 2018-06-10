@@ -16,3 +16,7 @@ yarn build
 ```
 
 You should see `1 + 1 = 2` on the resulting web page if everything works correctly.
+
+# Demo
+
+https://hankruiger.github.io/tensorflow-template/

@@ -1,31 +1,35 @@
 {
-  "name": "webpack-template",
+  "name": "tensorflow-template",
   "version": "1.0.0",
-  "description": "A template for quickly bootstrapping web apps",
+  "description": "A template for quickly bootstrapping TensorFlow web apps",
   "repository": {
     "type": "git",
-    "url": "github.com:HanKruiger/webpack-template.git"
+    "url": "github.com:HanKruiger/tensorflow-template.git"
   },
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "lint": "eslint ./src",
-    "start": "webpack-dev-server --mode development --host $(ipconfig getifaddr en0)",
-    "build": "webpack --mode production"
+    "clean": "rm -f ./dist/*",
+    "start": "webpack-dev-server --mode development",
+    "build": "yarn clean && webpack --mode production",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "author": "Han Kruiger",
   "license": "ISC",
   "devDependencies": {
     "@tensorflow/tfjs": "^0.11.6",
     "css-loader": "^0.28.10",
-    "eslint": "^4.18.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",
     "node-sass": "^4.8.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.2",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "tslint": "^5.10.0"
+  }
 }

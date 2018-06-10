@@ -1,25 +1,31 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
 const path = require("path");
 
 const config = {
-  entry: "./src/js/app.js",
+  entry: "./src/ts/app.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[hash].bundle.js"
+    filename: "bundle.js"
   },
   resolve: {
     modules: [
       path.resolve("src"),
-      path.resolve("src/js"),
-      path.resolve("node_modules") // For easily importing libraries
+      path.resolve("src/ts"),
+      path.resolve("node_modules")
     ]
   },
   module: {
     rules: [
+      // Loader for TypeScript.
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       // Loader for scss.
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
         use: [{
           loader: "style-loader" // creates style nodes from JS strings
         }, {
@@ -32,6 +38,7 @@ const config = {
       // Used for favicon.
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+        exclude: /node_modules/,
         loader: "file-loader?name=[name].[ext]"
       }
     ]
@@ -40,7 +47,8 @@ const config = {
     new HtmlWebpackPlugin({
       template: "./src/html/index.html"
     })
-  ]
+  ],
+  devtool: 'source-map',
 };
 
 module.exports = config;

@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require("path");
 
 const config = {
@@ -11,16 +12,28 @@ const config = {
     modules: [
       path.resolve("src"),
       path.resolve("src/ts"),
+      path.resolve("src/components"),
       path.resolve("node_modules")
-    ]
+    ],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
+    extensions: ['.ts', '.js', '.vue', '.json', '.png', '.scss']
   },
   module: {
     rules: [
       // Loader for TypeScript.
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
+      // Loader for Vue components.
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       // Loader for scss.
       {
@@ -46,7 +59,8 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/html/index.html"
-    })
+    }),
+    new VueLoaderPlugin()
   ],
   devtool: 'source-map',
 };

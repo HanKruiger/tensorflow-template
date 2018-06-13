@@ -1,17 +1,6 @@
 <template>
     <div>
-        <div>
-            <input type="number" v-model='a'>
-        </div>
-        <div>
-            <input type="number" v-model='b'>
-        </div>
-        <div>
-            <button @click="add">Compute sum</button>
-        </div>
-        <div>
-            <input type="number" v-model='result' readonly>
-        </div>
+        {{ equation }}
     </div>
 </template>
 
@@ -22,21 +11,22 @@ import * as tf from "@tensorflow/tfjs";
 export default Vue.extend({
     data () {
         return {
-            a: 1,
-            b: 1,
-            result: 0
+            equation: "Processing..."
         }
     },
+    mounted () {
+        this.sumOneAndOne();
+    },
     methods: {
-        add () {
+        sumOneAndOne () {
             // Compute the sum with TensorFlow
-            const result = tf.scalar(this.a)
-                .add(tf.scalar(this.b));
+            const result = tf.scalar(1)
+                .add(tf.scalar(1));
 
             // When it is done, set the data.
             result.data().then((data) => {
                 const rounded = Math.round(data[0]);
-                this.result = rounded;
+                this.equation = `1 + 1 = ${rounded}`;
             });
         }
     },
@@ -46,6 +36,7 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 div {
-    font-family: sans-serif;
+    font-family: monospace;
+    text-align: center;
 }
 </style>

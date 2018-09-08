@@ -1,19 +1,19 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const path = require("path");
+const path = require('path');
 
 const config = {
-  entry: "./src/ts/app.ts",
+  entry: './src/ts/app.ts',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
   resolve: {
     modules: [
-      path.resolve("src"),
-      path.resolve("src/ts"),
-      path.resolve("src/components"),
-      path.resolve("node_modules")
+      path.resolve('src'),
+      path.resolve('src/ts'),
+      path.resolve('src/components'),
+      path.resolve('node_modules')
     ],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
@@ -40,11 +40,11 @@ const config = {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [{
-          loader: "style-loader" // creates style nodes from JS strings
+          loader: 'style-loader' // creates style nodes from JS strings
         }, {
-          loader: "css-loader" // translates CSS into CommonJS
+          loader: 'css-loader' // translates CSS into CommonJS
         }, {
-          loader: "sass-loader" // compiles Sass to CSS
+          loader: 'sass-loader' // compiles Sass to CSS
         }]
       },
       // File loader retains original file name and extension.
@@ -52,13 +52,13 @@ const config = {
       {
         test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
         exclude: /node_modules/,
-        loader: "file-loader?name=[name].[ext]"
+        loader: 'file-loader?name=[name].[ext]'
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/html/index.html"
+      template: './src/html/index.html'
     }),
     new VueLoaderPlugin()
   ],

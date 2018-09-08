@@ -33,7 +33,13 @@ const config = {
       // Loader for Vue components.
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        // Makes tslint work for Vue components
+        options: {
+          loaders: {
+              ts: 'ts-loader!tslint-loader'
+          }
+      }
       },
       // Loader for scss.
       {
@@ -62,6 +68,10 @@ const config = {
     }),
     new VueLoaderPlugin()
   ],
+  devServer: {
+    open: true, // When open is enabled, the dev server will open the browser.
+    overlay: true, // Show a full-screen overlay in the browser when there are compiler errors or warnings.
+  },
   devtool: 'source-map',
 };
 
